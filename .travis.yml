@@ -8,10 +8,11 @@ services:
 
 script:
   - go test -v ./...
-  - go build -o ex04
-  - echo "$REGISTRY_PASSWORD" || docker login -u $REGISTRY_USER --password-stdin
+  - CGO_ENABLED=0 go build -o ex04
+
+  - echo "$REGISTRY_PASSWORD" || docker login -u $REGISTRY_USER -p -stdin
   - docker build -f Dockerfile -t dkroeg/ex04:latest ./
+  - docker image push dkroeg/ex04:latest
   - GIT_SHA="$(git rev-parse --short HEAD)"
   - docker tag dkroeg/ex04:latest dkroeg/ex04:$GIT_SHA
-  - docker image push dkroeg/ex04:latest
   - docker image push dkroeg/ex04:$GIT_SHA

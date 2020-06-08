@@ -19,4 +19,4 @@ RUN go build -o /usr/myapp
 Expose 8888
 
 # Run the service myapp when a container of this image is launched
-CMD ["/usr/myapp"]
+ENTRYPOINT ["/usr/myapp"]
