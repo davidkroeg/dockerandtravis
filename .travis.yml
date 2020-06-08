@@ -11,7 +11,8 @@ script:
   - CGO_ENABLED=0 go build -o ex04
 
   - docker build -f Dockerfile -t dkroeg/ex04:latest ./
-  - echo "$REGISTRY_PASSWORD" || docker login -u $REGISTRY_USER -p -stdin docker.io && docker push dkroeg/ex04:latest
+  - echo "$REGISTRY_PASSWORD" || docker login -u $REGISTRY_USER --password-stdin 
+  - docker push dkroeg/ex04:latest
   - GIT_SHA="$(git rev-parse --short HEAD)"
   - docker tag dkroeg/ex04:latest dkroeg/ex04:$GIT_SHA
   - docker push dkroeg/ex04:$GIT_SHA
