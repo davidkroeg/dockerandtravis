@@ -7,7 +7,7 @@ LABEL maintainer='david_@gmx.net'
 WORKDIR /src
 
 # Copy local file `main.go` to the working directory
-ADD main.go /src
+ADD main.go .
 
 # List items in the working directory (ls)
 RUN ls
