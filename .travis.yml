@@ -10,3 +10,11 @@ services:
 
 script:
   - go test -v ./...
+  - CGO_ENABLED=0 go build -o demo
+
+  - echo "$REGISTRY_PASSWORD" || docker login --username $REGISTRY_USER --password-stdin
+  - docker build -f Dockerfile -t dkroeg/demo:latest ./
+  - GIT_SHA="$(git rev-parse --short HEAD)"
+  - docker tag dkroeg/demo:latest dkroeg/demo:$GIT_SHA
+  - docker push dkroeg/demo:latest
+  - docker push dkroeg/demo:$GIT_SHA 
