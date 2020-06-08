@@ -15,6 +15,6 @@ script:
   - docker build -f Dockerfile -t dkroeg/demo:latest ./
   - GIT_SHA="$(git rev-parse --short HEAD)"
   - docker tag dkroeg/demo:latest dkroeg/demo:$GIT_SHA
-  - echo "$REGISTRY_PASSWORD" || docker login --username $REGISTRY_USER --password-stdin docker.io
+  - echo "$REGISTRY_PASSWORD" || docker login -u $REGISTRY_USER --password-stdin
   - docker image push dkroeg/demo:latest
   - docker image push dkroeg/demo:$GIT_SHA
