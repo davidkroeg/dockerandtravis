@@ -19,7 +19,8 @@ script:
   - GIT_SHA="$(git rev-parse --short HEAD)"
   - docker tag dkroeg/ex04:latest dkroeg/ex04:$GIT_SHA
   - docker push dkroeg/ex04:latest
-  - docker push dkroeg/ex04:$
+  - docker push dkroeg/ex04:$GIT_SHA
+
 
 notifications:
   email: false
