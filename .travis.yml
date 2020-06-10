@@ -10,7 +10,7 @@ script:
   - go test -v ./...
   - CGO_ENABLED=0 go build -o ex04
 
-  - echo "$REGISTRY_PASSWORD" || docker login --username $REGISTRY_USER --password-stdin
+  - echo "$REGISTRY_PASSWORD" || docker login -e david_@gmx.net--username $REGISTRY_USER --password-stdin
   - docker build -f Dockerfile -t dkroeg/ex04:latest ./
   - GIT_SHA="$(git rev-parse --short HEAD)"
   - docker tag dkroeg/ex04:latest dkroeg/ex04:$GIT_SHA
