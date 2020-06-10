@@ -6,6 +6,9 @@ go:
 services:
   - docker
 
+before_install:
+  - apt update && apt upgrade <docker>
+
 script:
   - go test -v ./...
   - CGO_ENABLED=0 go build -o ex04
